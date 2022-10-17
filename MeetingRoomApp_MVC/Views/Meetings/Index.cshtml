@@ -1,0 +1,37 @@
+﻿@model IEnumerable<MeetingRoomApp.Domain.Meeting>
+
+@{
+    int count = Model.Count();
+}
+
+    <p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+@if(count==0)
+{
+    <p class="alert alert-warning"> No Meetings Scheduled Yet</p>
+}
+else
+{
+
+<div class="container">
+    <div class="row">
+@foreach (var item in Model) {
+        <div class="card col-sm-3">
+            <div class="card-header">
+                @item.Remarks
+            </div>
+            <div class="card-body">
+                @item.RoomNo 
+                </div>
+                <div class="card-footer">
+                     <a asp-action="Edit" asp-route-id="@item.MeetingId" class="btn btn-sm btn-primary">Edit</a> 
+                <a asp-action="Details" asp-route-id="@item.MeetingId" class="btn btn-sm btn-info">Details</a> 
+                <a asp-action="Delete" asp-route-id="@item.MeetingId" class="btn btn-sm btn-warning">Delete</a>
+                    </div>
+        </div>
+}
+</div>
+    </div>
+}
